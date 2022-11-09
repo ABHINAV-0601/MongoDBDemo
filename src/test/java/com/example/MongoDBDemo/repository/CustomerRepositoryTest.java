@@ -46,27 +46,27 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    @DisplayName("Test case for deleting customer object")
+    @DisplayName("Test case for deleting customer")
     public void givenCustomerToDeleteShouldDeleteCustomer() {
         customerRepository.insert(customer);
         Customer customer1 = customerRepository.findById(customer.getCustomerId()).get();
-        customerRepository.delete(customer1);
+        customerRepository.deleteById(customer1.getCustomerId());
         assertEquals(Optional.empty(), customerRepository.findById(customer.getCustomerId()));
 
     }
 
     @Test
-    @DisplayName("Test case for retrieving all the  customer object")
+    @DisplayName("Test case for getting all the  customer ")
     public void givenCustomerReturnAllCustomerDetails() {
 
         customerRepository.insert(customer);
-        Address address1 = new Address("Jacksonville", "Florida ", "USA","478544");
-        Customer customer1 = new Customer(1002, "Harry","h@gmail.com", address1);
+        Address address1 = new Address("Raipur", "CG", "India","478544");
+        Customer customer1 = new Customer(1002, "Harsh","h@gmail.com", address1);
         customerRepository.insert(customer1);
 
         List<Customer> list = customerRepository.findAll();
         assertEquals(2, list.size());
-        assertEquals("Harry", list.get(1).getCustomerName());
+        assertEquals("Harsh", list.get(1).getCustomerName());
 
     }
 
